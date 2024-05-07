@@ -1,6 +1,7 @@
 // import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+// import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 async function SessionChecker({
@@ -10,7 +11,7 @@ async function SessionChecker({
   role?: string;
   basic?: boolean;
 }) {
-  const session: any = await getServerSession(authOptions as any);
+  const session: any = await auth();
 
   if (!basic) {
     if (session && session?.user?.role === role) {
